@@ -1,12 +1,15 @@
 import asyncio
 import logging
+import os
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 logging.basicConfig(level=logging.INFO)
 
-TOKEN = 'YOUR_BOT_TOKEN_HERE'
+TOKEN = os.getenv('BOT_TOKEN')
+if not TOKEN:
+    raise ValueError("BOT_TOKEN environment variable is not set!")
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
